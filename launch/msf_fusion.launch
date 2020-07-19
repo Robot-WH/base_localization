@@ -1,0 +1,4 @@
+<launch>
+    <node name="msf_fusion" pkg="localization" type="sensor_fusion" output="screen">
+    </node>
+</launch>

@@ -1,0 +1,17 @@
+<launch>
+    <!--加载模型，以及发布模型的tf-->
+    <include file="$(find car_model)/launch/model.launch"/>
+    <!--雷达定位-->
+    <node name="NDT_localization" pkg="localization" type="NDT_localization" output="screen">
+        <rosparam file="$(find localization)/params/params.yaml" command="load"/>     <!-- 加载参数-->
+    </node>
+    <!--融合定位-->
+    <node name="msf_fusion" pkg="localization" type="sensor_fusion" output="screen" />
+
+    <node name="map_pub" pkg="localization" type="map_pub" output="screen">
+        <rosparam file="$(find localization)/params/params.yaml" command="load"/>     <!-- 加载参数-->
+    </node>
+    <!--启动配置好的rviz-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find localization)/rviz/map_show.rviz" />
+
+</launch>

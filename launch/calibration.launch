@@ -1,0 +1,3 @@
+<launch>
+    <node name="Gps_to_Map" pkg="localization" type="Gps_to_Map" output="screen"  />  
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+    <!--加载模型，以及发布模型的tf-->
+    <include file="$(find car_model)/launch/model.launch"/>
+    <!--雷达定位-->
+    <node name="Lidar_odometry" pkg="localization" type="Lidar_Odometry" output="screen">
+        <rosparam file="$(find localization)/params/params.yaml" command="load"/>     <!-- 加载参数-->
+    </node>
+    <!--融合定位-->
+    <node name="msf_fusion" pkg="localization" type="sensor_fusion" output="screen" />
+
+    <!--启动配置好的rviz-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find localization)/rviz/map_show.rviz" />
+
+</launch>

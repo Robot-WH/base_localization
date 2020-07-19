@@ -1,0 +1,8 @@
+<launch>
+    <node name="map_pub" pkg="localization" type="map_pub" output="screen">
+        <rosparam file="$(find localization)/params/params.yaml" command="load"/>     <!-- 加载参数-->
+    </node>
+
+    <!--启动配置好的rviz-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find localization)/rviz/map_show.rviz" />
+</launch>
